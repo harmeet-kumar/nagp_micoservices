@@ -60,4 +60,3 @@ services:
     ports:
       - "8888:8888"
     container_name: configserver
-
