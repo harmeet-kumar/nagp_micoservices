@@ -1,0 +1,63 @@
+version: '3.4'
+services:
+  account:
+    image: harmeetkumar123/account:latest
+    expose:
+      - "80"
+    ports:
+      - "5001:80"
+    depends_on:
+      - eurekaserver
+      - configserver
+    hostname: account
+    container_name: account
+  customer:
+    image: harmeetkumar123/customer:latest
+    expose:
+      - "80"
+    ports:
+      - "5002:80"
+    depends_on:
+      - eurekaserver 
+    hostname: customer
+    container_name: customer
+  transactions:
+    image: harmeetkumar123/transactions:latest
+    expose:
+      - "80"
+    ports:
+      - "5004:80"
+    depends_on:
+      - eurekaserver 
+    hostname: transactions
+    container_name: transactions
+  logger:
+    image: harmeetkumar123/logger:latest
+    expose:
+      - "80"
+    ports:
+      - "5003:80"
+    depends_on:
+      - eurekaserver 
+    hostname: logger
+    container_name: logger
+  gateway:
+    image: harmeetkumar123/gateway:latest
+    expose:
+      - "80"
+    ports:
+      - "5000:80"
+    depends_on:
+      - eurekaserver
+    container_name: gateway
+  eurekaserver:
+    image: harmeetkumar123/eurekaserver:latest
+    ports:
+      - "8761:8761"
+    container_name: eurekaserver
+  configserver:
+    image: harmeetkumar123/configserver:latest
+    ports:
+      - "8888:8888"
+    container_name: configserver
+

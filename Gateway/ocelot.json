@@ -1,0 +1,147 @@
+{
+  //ReRoutes array allows you to define one or more redirects.
+  //The downstream paths represent the paths to the microservices.
+  //The upstream paths represent how the users will access these microservices via the API Gateway.
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/values/issueChequeBook/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/account/issueChequeBook/{catchAll}"
+      //"UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/values/chequeBookBlock/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/account/chequeBookBlock/{catchAll}"
+      //"UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/values/{acctid}/transferAccount/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/account/{acctid}/transferAccount/{catchAll}"
+      //"UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/values",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/account"
+      //"UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/values/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/account/{catchAll}"
+      //"UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/values",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "customer",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/customer",
+      "UpstreamHttpMethod": []
+    },
+    {
+      "DownstreamPathTemplate": "/api/values/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "customer",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/customer/{catchAll}",
+      "UpstreamHttpMethod": []
+    },
+    {
+      "DownstreamPathTemplate": "/api/values/{catchAll}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "logger",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/logger/{catchAll}",
+      "UpstreamHttpMethod": []
+    },
+    {
+      "DownstreamPathTemplate": "/api/values",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "logger",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/logger",
+      "UpstreamHttpMethod": []
+    },
+    {
+      "DownstreamPathTemplate": "/api/values",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "transactions",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/transactions/{catchAll}",
+      "UpstreamHttpMethod": []
+    },
+    {
+      "DownstreamPathTemplate": "/api/values/{userid}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "transactions",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/transactions/{userid}",
+      "UpstreamHttpMethod": []
+    }
+  ],
+  "GlobalConfiguration": {
+    "UseServiceDiscovery": true,
+    "ServiceDiscoveryProvider": {
+      "Host": "eurekaserver",
+      "Port": "8761",
+      "Type": "Eureka"
+    }
+  }
+}
